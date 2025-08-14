@@ -26,6 +26,28 @@ With the digital twin view, Spot’s motion path can be plotted in Unity as real
 |:------------------------------------------:|:--------------------------------------------
 
 
+# Spot Control UI
+
+#### ROS2 Interface
+
+The ROS2 controls provide a standardized interface for sending commands to Spot and receiving sensor data. Through this interface, the HoloLens or control computer can manage robot movement, joint positions, and operational states, enabling precise and coordinated control during AR-assisted navigation and experiments.
+
+
+![](images/UI/RosInterface.png)
+
+To connect the HoloLens to the ROS2 interface, it must first be connected to the Spot robot’s Wi-Fi network. The ROS interface menu displays the IP address and port required for the connection, and its status indicator changes from red to green when the link is successfully established after the user hits the connect button. Four box indicators at the top of the menu show each stage of the connection process, making it easy to identify and troubleshoot any specific step that may be causing networking issues.
+
+
+
+
+#### GO and STOP Controls
+
+The Stop-and-Go AR interface uses clear visual and audio cues to indicate Spot’s operational state. When in **GO** mode, a blue arrow is shown over Spot and dot appear on the left-hand menu along with an audio prompt. When in **STOP** mode, a red arrow is shown over Spot and dot are displayed on the user’s hand, ensuring the human controller can quickly recognize the robot’s current state. Additionally, the arrow and text prompt shows which direct Spot is moving, for example * Walking Foward*.
+
+
+| ![Joystick Left](images/UI/Go.png) | ![Joystick Right](images/UI/Stop.png) |
+|:------------------------------------------:|:---------------------------------------------:|
+| **GO** UI Indicator                             | **STOP** UI Indicator                              |
 
 
 
