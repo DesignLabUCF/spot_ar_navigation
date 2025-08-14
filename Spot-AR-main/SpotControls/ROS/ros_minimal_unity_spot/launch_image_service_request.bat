@@ -1,0 +1,1 @@
+docker run -it ros-minimal-unity-spot-x64 python3 src/unity_robotics_demo/unity_robotics_demo/debug_image_request.py frontright_fisheye_image PIXEL_FORMAT_RGB_U8 50

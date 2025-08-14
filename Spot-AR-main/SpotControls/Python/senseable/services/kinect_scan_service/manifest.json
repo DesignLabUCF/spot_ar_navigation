@@ -1,0 +1,7 @@
+{
+  "description": "SENSEable Design Lab test service.",
+  "version": "0.1",
+  "icon": "icon.png",
+  "udev_rules": "senseable_udev.rules",
+  "images": ["kinect-scan-service-arm64.tgz"]
+}

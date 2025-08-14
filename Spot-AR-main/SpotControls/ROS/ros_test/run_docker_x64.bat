@@ -1,0 +1,1 @@
+docker run -it ros-test ros2 launch demo_nodes_cpp talker_listener.launch.py

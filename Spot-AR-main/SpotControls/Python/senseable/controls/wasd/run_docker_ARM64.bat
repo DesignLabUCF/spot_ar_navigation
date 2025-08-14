@@ -1,0 +1,1 @@
+docker run -it --platform linux/arm64 controls-wasd-arm64

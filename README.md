@@ -4,7 +4,7 @@ This repository is the official implementation of [**Evaluating the Effectivenes
 
 ![Heder Imager for project.](images/header.png)
 
-
+This study examines how Augmented Reality (AR) interfaces affect navigation control of the [**Boston Dynamics Spot**](https://bostondynamics.com/products/spot/) quadrupedal robot UCF [**TapeMeasure**](https://www.instagram.com/ucf.tapemeasure/). Testing with 33 non-experts and two experts showed that AR provided smoother robot movement and similar usability and trust compared to tablet controls, despite longer task times. The findings highlight AR’s potential to make advanced robotic systems more accessible and trusted by a wider range of users. This repository allows researchers to replicate the environment for our study and help aid their own studies that leverage quadrupedal robotic platforms.
 
 ## Tablet Training
 

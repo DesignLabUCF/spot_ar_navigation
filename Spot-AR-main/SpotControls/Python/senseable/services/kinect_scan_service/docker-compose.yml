@@ -1,0 +1,18 @@
+services:
+  kinect_scan_service:
+    image: kinect-scan-service-arm64
+    platform: linux
+    network_mode: host
+    volumes:
+      - /data:/data
+    devices:
+      - /dev/bus:/dev/bus
+    restart: unless-stopped
+    command: --port 5050
+    #command: tail -F /bin/bash
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]

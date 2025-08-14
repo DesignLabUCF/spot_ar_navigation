@@ -1,0 +1,7 @@
+# Xbox One
+SUBSYSTEM=="usb", ATTRS{idVendor}=="045e", ATTRS{idProduct}=="02e6", MODE:="0666"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="045e", ATTRS{idProduct}=="02fe", MODE:="0666"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="045e", ATTRS{idProduct}=="091e", MODE:="0666"
+KERNEL=="uinput", SUBSYSTEM=="misc", MODE:="0666"
+
+# Playstation 4

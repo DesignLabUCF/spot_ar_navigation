@@ -1,0 +1,1 @@
+tar zcfv senseable-controls-extension.spx docker-compose.yml icon.png manifest.json senseable_udev.rules *.tgz

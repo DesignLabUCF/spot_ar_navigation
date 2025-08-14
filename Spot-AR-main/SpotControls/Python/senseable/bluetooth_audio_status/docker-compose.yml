@@ -1,0 +1,16 @@
+services:
+  bluetooth_audio_status:
+    image: bluetooth-audio-status-arm64
+    platform: linux
+    network_mode: "host"
+    volumes:
+      - /data:/data
+    # Temporary fix, will need to turn off privledges and track specific device paths instead
+    privileged: true
+    #devices:
+    #  - /dev/bus:/dev/bus
+    # Replacement for -t
+    tty: true
+    # Replacement for -i
+    stdin_open: true 
+    restart: unless-stopped

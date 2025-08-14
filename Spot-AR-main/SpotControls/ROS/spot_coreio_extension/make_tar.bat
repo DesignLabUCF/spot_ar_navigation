@@ -1,0 +1,1 @@
+tar zcfv senseable-ros2-extension.spx docker-compose.yml icon.png manifest.json spot-ros2-arm64.tgz

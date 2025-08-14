@@ -1,0 +1,1 @@
+python live_feed_status.py 192.168.80.3 --pixel-format PIXEL_FORMAT_RGB_U8 -j 100

@@ -1,0 +1,26 @@
+### Pull the base ROS humble image
+### https://github.com/osrf/docker_images/blob/3f4fbca923d80f834f3a89b5960bad5582652519/ros/humble/ubuntu/jammy/desktop/Dockerfile
+### Adapted with https://hub.docker.com/r/arm64v8/ros/tags
+FROM arm64v8/ros:humble-ros-base
+
+# ROS_DISTRO set by base image. Install test packages normally found in the Humble Desktop variant (which is not availble for ARM64 so we need to supply them ourself). Have in both Dockerfiles to keep consistent.
+RUN apt-get update && apt-get install -y \
+      ros-${ROS_DISTRO}-demo-nodes-cpp \
+      ros-${ROS_DISTRO}-demo-nodes-py && \
+    rm -rf /var/lib/apt/lists/*
+# launch ros package
+#CMD ["ros2", "launch", "demo_nodes_cpp", "talker_listener.launch.py"]
+CMD /bin/bash
+
+### Create ROS workspace with colcon. Colcon already installed by base images
+RUN mkdir -p /senseable_ws/src
+WORKDIR /senseable_ws
+RUN git clone https://github.com/ros2/examples src/examples -b humble
+
+# Source it and build in same bash. Shares env vars between them.
+RUN /bin/bash -c "source /opt/ros/humble/setup.bash \ 
+&&    colcon build --symlink-install \
+&&    source install/setup.bash"
+
+### Add the Spot ROS wrapper on top
+# TODO

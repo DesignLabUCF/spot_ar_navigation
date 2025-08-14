@@ -1,0 +1,7 @@
+services:
+  battery_service:
+    image: battery-service-arm64
+    platform: linux
+    network_mode: host
+    restart: unless-stopped
+    command: --port 5050

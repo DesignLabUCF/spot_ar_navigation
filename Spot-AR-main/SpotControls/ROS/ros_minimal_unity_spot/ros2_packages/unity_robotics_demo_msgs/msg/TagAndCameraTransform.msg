@@ -1,0 +1,2 @@
+SpotTransform tag
+SpotTransform camera

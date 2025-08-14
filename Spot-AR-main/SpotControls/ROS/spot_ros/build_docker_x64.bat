@@ -1,0 +1,2 @@
+:: Build for ARM64 on Windows
+docker build -t spot-ros-x64 -f Dockerfile.x64 --build-arg BOSDYN_CLIENT_USERNAME=%BOSDYN_CLIENT_USERNAME% --build-arg BOSDYN_CLIENT_PASSWORD=%BOSDYN_CLIENT_PASSWORD% --build-arg SPOT_IP=192.168.80.3 .

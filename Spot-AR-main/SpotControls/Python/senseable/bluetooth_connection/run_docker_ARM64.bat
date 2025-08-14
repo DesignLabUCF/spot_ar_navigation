@@ -1,0 +1,1 @@
+docker run -it --privileged --net=host bluetooth-arm64 /bin/bash

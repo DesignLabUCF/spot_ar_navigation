@@ -1,0 +1,1 @@
+docker run -it ros-minimal-x64 ros2 run demo_nodes_cpp talker --ros-args --remap __node:=senseable_talker

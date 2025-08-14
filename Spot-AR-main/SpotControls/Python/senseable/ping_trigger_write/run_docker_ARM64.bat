@@ -1,0 +1,1 @@
+docker run -it -p 21003:21003 --platform linux/arm64 ping-write-dockerization-arm64 

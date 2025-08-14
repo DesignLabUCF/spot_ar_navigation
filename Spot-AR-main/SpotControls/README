@@ -1,0 +1,60 @@
+## Setup x11 forwarding on Windows 10
+
+1. Download and install a windows based X11 server. 
+    - My choice is VcXsrv.
+        - Download link: https://sourceforge.net/projects/vcxsrv/
+
+2. Make sure your X11 server is up and running.
+    - If you used VcXsrv you will need to start the server by:
+        1. Start the XLaunch program that was installed.
+        2. Display settings can be left at the default setting of multiple windows and display -1.
+        3. Start no client is the default way to start the server
+        4. Extra Settings
+            - Clipboard settings can be left at the default of having both boxes checked.
+            - Native opengl settings are tricky, I have run into some cases where this setting will not allow windows with rendering to be opened. Most cases this will work in the default state of being checked.
+            - Disable access control should be left in the default unchecked state. If you have issues testing your initial connections and windows you may want to test with this disabled but after your testing is finished you should restart the server with this option unchecked. Leaving this checked will allow anyone to access your X11 server from the network!
+        5. You can save a shortcut file to start the server with your current applied settings if you wish.
+
+3. Test X11 windows
+    - Test windows available from the right click menu of the sever icon in your icon tray.
+        1. xclock - opens a simple analog clock face using X11
+        2. xcalc - opens a scientific calculator using X11
+
+4. Install an X11 capable ssh tool / allow CMD to display properly
+    - If you are using CMD on windows you will need to export your $DISPLAY variable after connecting via ssh.
+        - export DISPLAY=<your machine IP>:0.0
+
+    - Other X11 capable tools.
+    You will need to adjust your X11 settings in each of these to support a display of localhost:0.0
+        - Putty
+        - Remote Desktop Manager
+
+
+## Setup for X11 forwarding on Ubuntu
+
+1. Connect via ssh to your ubuntu instance
+
+2. Install you X11 basic apps
+    - apt -y install x11-apps
+
+3. Edit your Ubuntu sshd_config file
+    - sudo vi /etc/ssh/sshd_config
+        - This command uses the default vim text editor but any text editor will work.
+    - Ensure these lines are correct: (more lines can be changed for your situation but these are the only necessary changes)
+        AddressFamily inet (use 'inet' instead of 'any' to allow X11UseLocalhost=yes)
+
+        X11Forwarding yes
+        X11DisplayOffset 10
+        X11UseLocalhost yes
+        TCPKeepAlive yes
+    - Save changes and exit
+
+4. Restart the sshd service and check it's status
+    - sudo systemctl restart sshd
+    - sudo systemctl status sshd
+
+5. Check your $DISPLAY variable
+    - ssh into your instance
+    - run
+        - echo $DISPLAY
+          localhost:10.0 (Should be a response similar to this)

@@ -1,0 +1,87 @@
+FROM ros-minimal-arm64
+
+# TODO note for readme: I would build it step by step within the container terminal, then translate those commands to Dockerfile. Easier to diagnose and fix errors.
+
+# TODO if the current build doesnt work, it may be because there is some residual python3.10 it's using. Need to ID where it enters the system and replace it so all packagaes are installed to 3.8.
+
+### Install Spot ROS2 Driver
+### https://github.com/bdaiinstitute/spot_ros2
+
+# Install pre-reqs
+RUN apt update
+RUN apt-get install wget
+RUN apt-get install python3-pip -y
+
+# For some reason, this is missing. Add manually. May be only necessary because Python version misalignments. Might remove soon hopefully.
+RUN pip install aiortc 
+
+# Setup ENV for authentication
+ARG BOSDYN_CLIENT_USERNAME
+ARG BOSDYN_CLIENT_PASSWORD
+ARG SPOT_IP
+ENV BOSDYN_CLIENT_USERNAME $BOSDYN_CLIENT_USERNAME
+ENV BOSDYN_CLIENT_PASSWORD $BOSDYN_CLIENT_PASSWORD
+ENV SPOT_IP $SPOT_IP
+
+# Setup ENV to force ROS2 to use ports in a range that is Spot-friendly
+# Ports 21000-22000 are available to use on Spot without causing other complications (https://dev.bostondynamics.com/docs/payload/configuring_payload_software)
+# Setting the ROS domain ID to a certain value will force ROS2 to connect to ports that use this value (See the Port calculate at the bottom of: https://docs.ros.org/en/galactic/Concepts/About-Domain-ID.html)
+# 55 will connect to ports 21150, 21151, 21160, and 21161
+ENV ROS_DOMAIN_ID=55
+
+# Download and init
+WORKDIR /senseable_ws/src
+RUN git clone https://github.com/bdaiinstitute/spot_ros2.git
+WORKDIR spot_ros2
+RUN git submodule init
+RUN git submodule update
+
+### Import ROS2 messages and source code
+# Copy over the ROS-TCP Endpoint source code so Unity can talk to ROS
+#COPY ROS-TCP-Endpoint /senseable_ws/src/
+COPY src /senseable_ws/src
+
+# Copy over the example ROS2 messages provided by Unity for testing
+#COPY unity_robotics_demo /senseable_ws/src/
+#COPY unity_robotics_demo_msgs /senseable_ws/src/
+
+# Copy over custom messages
+# TODO
+
+### IN THE PROCESS OF MOVING THIS TO ITS OWN DOCKERFILE ENV
+# There are no available bosdyn_msgs builds for ARM64, so we must first build our own. Because our base image is ARM64, this will build for ARM64 as well.
+# https://github.com/bdaiinstitute/bosdyn_msgs
+# WARNING: This takes a LONG time. Most recently: 40000 seconds
+#RUN pip install -U bloom
+#RUN apt-get install fakeroot -y
+#WORKDIR / 
+#RUN git clone https://github.com/bdaiinstitute/bosdyn_msgs
+#WORKDIR /bosdyn_msgs
+#RUN apt-get install dpkg-dev debhelper -y
+#RUN bloom-generate rosdebian --os-name ubuntu --os-version jammy --ros-distro humble
+#RUN /bin/bash -c "source /opt/ros/humble/setup.bash \
+#&& fakeroot debian/rules binary"
+
+# This can be used instead to load on the pre-generated .deb file
+WORKDIR /
+COPY ros-humble-bosdyn-msgs_3.3.0-0jammy_arm64.deb /
+
+# Emulate the 'install_spot_ros2.sh' to use our deb file. Replace original locations with our locally availbe one we created above.
+WORKDIR /
+RUN /bin/bash -c "cd /senseable_ws/src/spot_ros2 \
+&&    ROS_DISTRO=humble \ 
+&&    pip3 install bosdyn-client bosdyn-mission bosdyn-api bosdyn-core \
+&&    apt install -y ros-$ROS_DISTRO-joint-state-publisher-gui ros-$ROS_DISTRO-tf-transformations ros-$ROS_DISTRO-xacro ros-$ROS_DISTRO-depth-image-proc \
+&&	  dpkg -i /ros-humble-bosdyn-msgs_3.3.0-0jammy_arm64.deb"
+#&&    cd /senseable_ws \
+#&&    source /opt/ros/humble/setup.bash \
+#&&    colcon build --symlink-install \
+#&&    source install/local_setup.bash"
+
+# Source the ROS2 workspace and launch the ROS2 Spot wrapper driver
+CMD /bin/bash -c "cd /senseable_ws \
+&&  source /opt/ros/humble/setup.bash \
+&&  colcon build --symlink-install \
+&&  source install/setup.bash"
+#&&  source install/setup.bash \
+#&&  ros2 launch spot_driver spot_driver.launch.py"

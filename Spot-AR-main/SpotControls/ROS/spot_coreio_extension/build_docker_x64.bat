@@ -1,0 +1,1 @@
+docker build -t spot-ros2-x64 -f Dockerfile.x64 --build-arg BOSDYN_CLIENT_USERNAME=%BOSDYN_CLIENT_USERNAME% --build-arg BOSDYN_CLIENT_PASSWORD=%BOSDYN_CLIENT_PASSWORD% .

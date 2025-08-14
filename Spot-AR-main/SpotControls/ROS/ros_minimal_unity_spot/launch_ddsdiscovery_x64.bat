@@ -1,0 +1,1 @@
+docker run -it ros-minimal-unity-spot-x64 fastdds discovery -i 0 -p 21000

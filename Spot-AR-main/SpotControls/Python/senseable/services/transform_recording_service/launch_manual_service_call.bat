@@ -1,0 +1,1 @@
+python manual_action_trigger.py 192.168.80.3

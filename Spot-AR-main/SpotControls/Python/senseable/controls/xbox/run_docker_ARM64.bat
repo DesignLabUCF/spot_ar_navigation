@@ -1,0 +1,1 @@
+docker run -it --platform linux/arm64 --net=host --privileged controls-xbox-arm64 

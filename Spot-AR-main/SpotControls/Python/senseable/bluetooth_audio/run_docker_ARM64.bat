@@ -1,0 +1,1 @@
+docker run -it --privileged --net=host bluetooth-audio-test-arm64 /bin/bash

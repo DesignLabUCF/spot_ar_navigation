@@ -1,0 +1,29 @@
+FROM ros-minimal-arm64
+
+### Install Spot ROS2 Driver
+### https://github.com/bdaiinstitute/spot_ros2
+
+# Install pre-reqs
+RUN apt update
+RUN apt-get install wget
+RUN apt-get install python3-pip -y
+
+# Download and init
+WORKDIR /senseable_ws/src
+RUN git clone https://github.com/bdaiinstitute/spot_ros2.git
+WORKDIR spot_ros2
+RUN git submodule init
+RUN git submodule update
+
+# There are no available bosdyn_msgs builds for ARM64, so we must first build our own. Because our base image is ARM64, this will build for ARM64 as well.
+# https://github.com/bdaiinstitute/bosdyn_msgs
+# WARNING: This takes a LONG time. Most recently: 40000 seconds
+RUN pip install -U bloom
+RUN apt-get install fakeroot -y
+WORKDIR / 
+RUN git clone https://github.com/bdaiinstitute/bosdyn_msgs
+WORKDIR /bosdyn_msgs
+RUN apt-get install dpkg-dev debhelper -y
+RUN bloom-generate rosdebian --os-name ubuntu --os-version jammy --ros-distro humble
+RUN /bin/bash -c "source /opt/ros/humble/setup.bash \
+&& fakeroot debian/rules binary"

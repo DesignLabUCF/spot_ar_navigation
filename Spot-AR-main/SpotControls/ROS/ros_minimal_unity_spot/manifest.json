@@ -1,0 +1,7 @@
+{
+  "description": "Collection of SENSEable Design Lab Spot-ROS controls.",
+  "version": "0.1",
+  "icon": "icon.png",
+  "udev_rules": "senseable_udev.rules",
+  "images": ["ros-minimal-unity-spot-arm64.tgz"]
+}

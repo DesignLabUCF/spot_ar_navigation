@@ -1,0 +1,1 @@
+docker run -it -p 21004:21004 --platform linux/arm64 --device=/dev/video0 ping-webcam-dockerization-arm64 

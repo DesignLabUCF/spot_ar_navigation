@@ -1,0 +1,9 @@
+services:
+  transform_recording_service:
+    image: transform-service-arm64
+    platform: linux
+    network_mode: host
+    volumes:
+      - /data:/data
+    restart: unless-stopped
+    command: --port 5050

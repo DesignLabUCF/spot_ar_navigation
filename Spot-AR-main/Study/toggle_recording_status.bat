@@ -1,0 +1,1 @@
+study_env\Scripts\python ../SpotControls/Python/senseable/services/transform_recording_service/manual_action_trigger.py 192.168.80.3

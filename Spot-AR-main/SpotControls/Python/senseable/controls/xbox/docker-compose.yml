@@ -1,0 +1,16 @@
+services:
+  controls_xbox:
+    image: controls-xbox-arm64
+    platform: linux
+    network_mode: "host"
+    volumes:
+      - /data:/data
+      - /var/run/dbus:/var/run/dbus
+    # Temporary fix, will need to turn off privledges and track specific device paths instead
+    privileged: true
+    #devices:
+    #  - /dev/bus:/dev/bus
+    restart: unless-stopped
+    #command: python looptest.py
+    #command: python xbox.py 192.168.80.3 --use-bluetooth True
+    #command: python /xbox.py 192.168.80.3

@@ -1,0 +1,6 @@
+{
+  "description": "SENSEable Design Lab test service.",
+  "version": "0.1",
+  "icon": "icon.png",
+  "images": ["blk-scan-service-arm64.tgz"]
+}

@@ -1,0 +1,46 @@
+The following commands are run while ssh'd into Spot.
+
+## SSH into Spot
+
+```
+ssh -p 20022 spot@[SPOT IP]
+ssh -p 20022 spot@192.168.80.3
+```
+
+## List running containers
+
+```
+sudo docker container ls
+```
+
+## Access container's bash
+
+```
+sudo docker exec -it [CONTAINER NAME] /bin/bash
+```
+The -it seems to tell docker to do it in the current bash. Essential.
+
+## Execute Linux command on container
+
+```
+sudo docker container exec [CONTAINER NAME] [LINUX COMMAND]
+```
+
+## List container base directory
+
+```
+sudo docker container exec [CONTAINER NAME] ls
+```
+
+## Access container output
+
+```
+sudo docker attach [CONTAINER NAME]
+```
+
+
+## Print container IP (useless)
+
+```
+sudo docker container exec [CONTAINER NAME] hostname -I
+```

@@ -1,0 +1,149 @@
+services:
+
+  # https://github.com/rshu-bd/spot_ros2/tree/rshu-bd/spot_core_extension/spot_coreio_extension
+#  ros_fastdds_discovery_server:
+#    image: ros-minimal-unity-spot-arm64
+#    platform: linux
+#    network_mode: host
+#    #ipc: host
+#    restart: unless-stopped
+#    # Launch the FastDDS discovery sever to bypass the need of multicast to discover nodes
+#    command: fastdds discovery -i 0 -p 21000
+
+  ros_tcp_endpoint:
+    image: ros-minimal-unity-spot-arm64
+    platform: linux
+    network_mode: host
+    #ipc: host
+    volumes:
+      - /data:/data
+    environment:
+    #  - ROS_DISCOVERY_SERVER=192.168.80.3:21000
+    #  - ROS_DOMAIN_ID=56
+#      - ROS_DISCOVERY_SERVER=192.168.50.5:21000
+      - PLACEHOLDER=0
+    restart: unless-stopped
+    command: ros2 run ros_tcp_endpoint default_server_endpoint --ros-args -p ROS_TCP_PORT:=21150
+    #command: ros2 run ros_tcp_endpoint default_server_endpoint --ros-args -p ROS_TCP_PORT:=21150 -p ROS_IP:=192.168.50.5
+#    depends_on:
+#      - ros_fastdds_discovery_server
+
+  hello_publisher:
+    image: ros-minimal-unity-spot-arm64
+    platform: linux
+    volumes:
+      - /data:/data
+    environment:
+      - PLACEHOLDER=0
+    restart: unless-stopped
+    command: ros2 run unity_robotics_demo debug_hello_publisher
+
+  transform_publisher:
+    image: ros-minimal-unity-spot-arm64
+    platform: linux
+    #network_mode: host
+    #ipc: host
+    volumes:
+      - /data:/data
+    environment:
+      # CORE IO
+#      - ROS_DISCOVERY_SERVER=192.168.50.5:21000
+      # Spot regular
+      #- ROS_DISCOVERY_SERVER=192.168.80.3:21000
+      #- ROS_DISCOVERY_SERVER=127.0.0.1:21000
+      #- ROS_DOMAIN_ID=56
+      #- ROS_DISCOVERY_SERVER=192.168.50.5:21000
+      - PLACEHOLDER=0
+    restart: unless-stopped
+    command: python3 src/unity_robotics_demo/unity_robotics_demo/spot_transform_publisher.py 192.168.80.3
+    #command: ros2 run demo_nodes_cpp talker
+    #command: ros2 run unity_robotics_demo debug_joints_subscriber
+#    depends_on:
+#      - ros_fastdds_discovery_server
+
+  joints_publisher:
+    image: ros-minimal-unity-spot-arm64
+    platform: linux
+    #network_mode: host
+    #ipc: host
+    volumes:
+      - /data:/data
+    environment:
+      # CORE IO
+#      - ROS_DISCOVERY_SERVER=192.168.50.5:21000
+      # Spot regular
+      #- ROS_DISCOVERY_SERVER=192.168.80.3:21000
+      #- ROS_DISCOVERY_SERVER=127.0.0.1:21000 
+      #- ROS_DOMAIN_ID=56
+      - PLACEHOLDER=0
+    restart: unless-stopped
+    command: python3 src/unity_robotics_demo/unity_robotics_demo/spot_joints_publisher.py 192.168.80.3
+    #command: ros2 run demo_nodes_cpp listener
+#    depends_on:
+#      - ros_fastdds_discovery_server
+
+  velocity_controller:
+    image: ros-minimal-unity-spot-arm64
+    platform: linux
+#    network_mode: host
+#    ipc: host
+    volumes:
+      - /data:/data
+    environment:
+      # CORE IO
+#      - ROS_DISCOVERY_SERVER=192.168.50.5:21000
+      # Spot regular
+      #- ROS_DISCOVERY_SERVER=192.168.80.3:21000
+      #- ROS_DOMAIN_ID=56
+      - PLACEHOLDER=0
+    restart: unless-stopped
+    command: python3 src/unity_robotics_demo/unity_robotics_demo/spot_velocity_controller.py 192.168.80.3
+#    depends_on:
+#      - ros_fastdds_discovery_server
+
+  # Cameras
+  camera_publisher_frontleft:
+    image: ros-minimal-unity-spot-arm64
+    platform: linux
+    volumes:
+      - /data:/data
+    environment:
+      - PLACEHOLDER=0
+    restart: unless-stopped
+    command: python3 src/unity_robotics_demo/unity_robotics_demo/spot_get_image.py 192.168.80.3 frontleft_fisheye_image PIXEL_FORMAT_RGB_U8
+  camera_publisher_frontright:
+    image: ros-minimal-unity-spot-arm64
+    platform: linux
+    volumes:
+      - /data:/data
+    environment:
+      - PLACEHOLDER=0
+    restart: unless-stopped
+    command: python3 src/unity_robotics_demo/unity_robotics_demo/spot_get_image.py 192.168.80.3 frontright_fisheye_image PIXEL_FORMAT_RGB_U8
+  camera_publisher_left:
+    image: ros-minimal-unity-spot-arm64
+    platform: linux
+    volumes:
+      - /data:/data
+    environment:
+      - PLACEHOLDER=0
+    restart: unless-stopped
+    command: python3 src/unity_robotics_demo/unity_robotics_demo/spot_get_image.py 192.168.80.3 left_fisheye_image PIXEL_FORMAT_RGB_U8
+  camera_publisher_right:
+    image: ros-minimal-unity-spot-arm64
+    platform: linux
+    volumes:
+      - /data:/data
+    environment:
+      - PLACEHOLDER=0
+    restart: unless-stopped
+    command: python3 src/unity_robotics_demo/unity_robotics_demo/spot_get_image.py 192.168.80.3 right_fisheye_image PIXEL_FORMAT_RGB_U8
+  camera_publisher_back:
+    image: ros-minimal-unity-spot-arm64
+    platform: linux
+    volumes:
+      - /data:/data
+    environment:
+      - PLACEHOLDER=0
+    restart: unless-stopped
+    command: python3 src/unity_robotics_demo/unity_robotics_demo/spot_get_image.py 192.168.80.3 back_fisheye_image PIXEL_FORMAT_RGB_U8

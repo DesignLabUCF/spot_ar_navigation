@@ -1,0 +1,16 @@
+[submodule "external_libraries/opencv"]
+	path = external_libraries/opencv
+	url = https://github.com/opencv/opencv
+[submodule "external_libraries/BosonSDK"]
+	path = external_libraries/BosonSDK
+	url = https://github.com/DesignLabUCF/BosonSDK
+	branch = main
+[submodule "external_libraries/cnpy"]
+	path = external_libraries/cnpy
+	url = https://github.com/rogersce/cnpy
+[submodule "external_libraries/zlib"]
+	path = external_libraries/zlib
+	url = https://github.com/madler/zlib
+[submodule "external_libraries/ici-flir"]
+	path = external_libraries/ici-flir
+	url = https://github.com/DesignLabUCF/ici-flir

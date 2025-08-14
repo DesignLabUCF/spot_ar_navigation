@@ -1,0 +1,6 @@
+ADD_SUBDIRECTORY(postprocessing)
+ADD_SUBDIRECTORY(basic_opencv_test)
+ADD_SUBDIRECTORY(ici-test)
+ADD_SUBDIRECTORY(multiple-cameras)
+ADD_SUBDIRECTORY(multiple-cameras-v2)
+ADD_SUBDIRECTORY(video-only)

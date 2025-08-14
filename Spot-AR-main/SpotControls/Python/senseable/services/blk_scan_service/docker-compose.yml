@@ -1,0 +1,9 @@
+services:
+  battery_service:
+    image: blk-scan-service-arm64
+    platform: linux
+    network_mode: host
+    volumes:
+      - /data:/data
+    restart: unless-stopped
+    command: --port 5050

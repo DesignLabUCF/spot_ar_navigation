@@ -1,0 +1,7 @@
+{
+  "description": "Collection of SENSEable Design Lab Spot utilities.",
+  "version": "0.1",
+  "icon": "icon.png",
+  "udev_rules": "senseable_udev.rules",
+  "images": ["controls-xbox-arm64.tgz"]
+}

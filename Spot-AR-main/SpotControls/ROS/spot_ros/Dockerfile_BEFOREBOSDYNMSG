@@ -1,0 +1,58 @@
+FROM ros-test-arm64
+
+### Install Spot ROS2 Driver
+### https://github.com/bdaiinstitute/spot_ros2
+
+# Install pre-reqs
+RUN apt update
+RUN apt-get install wget
+
+# Download and init
+WORKDIR /root/senseable_ws/src
+RUN git clone https://github.com/bdaiinstitute/spot_ros2.git
+WORKDIR spot_ros2
+RUN git submodule init
+RUN git submodule update
+
+# There are no available bosdyn_msgs builds for ARM64, so we must first build our own.
+# https://github.com/bdaiinstitute/bosdyn_msgs
+
+
+# Emulate the 'install_spot_ros2.sh' to account for ARM64
+#RUN /bin/bash -c "ROS_DISTRO=humble \ 
+#&&    pip3 install bosdyn-client bosdyn-mission bosdyn-api bosdyn-core \
+#&&    wget -q -O /tmp/ros-humble-bosdyn-msgs_3.2.0-0jammy_amd64.deb https://github.com/bdaiinstitute/bosdyn_msgs/releases/download/v3.2.0-frametreesnapshot/ros-humble-bosdyn-msgs_3.2.0-0jammy_amd64.deb \
+#&&	  dpkg -i /tmp/ros-humble-bosdyn-msgs_3.2.0-0jammy_amd64.deb \
+#&&    rm /tmp/ros-humble-bosdyn-msgs_3.2.0-0jammy_amd64.deb"
+
+
+#### ORIGINAL - GIT LATEST AND ALL ASSOCIATED FILES ARE FOR AMD64
+
+# Download and init
+#WORKDIR /root/senseable_ws/src
+#RUN git clone https://github.com/bdaiinstitute/spot_ros2.git
+#WORKDIR spot_ros2
+#RUN git submodule init
+#RUN git submodule update
+
+# Run installation (will fail because it's automated to pull from the AMD64 build, but we need ARM64 to load this onto Spot)
+#RUN /bin/bash -c "source ./install_spot_ros2.sh"
+#WORKDIR /root/senseable_ws
+
+### Install spot_msgs seperately as a deb package, as getting CMake errors during build process if not done.
+# It appears the original Spot CORE used a different architecture, and at the time of writing, built ARM64 bosdyn_msgs package is not provided on GitHub for Humble. We will build our own.
+# Original source:
+#	/tmp/ros-humble-spot-msgs_0.0.0-0jammy_amd64.deb https://github.com/bdaiinstitute/spot_ros2/releases/download/spot_msgs-v0.0-0/ros-humble-spot-msgs_0.0.0-0jammy_amd64.deb
+# Replaced with:
+#	/tmp/ros-eloquent-bosdyn-msgs_0.0.0-0bionic_arm64.deb https://github.com/bdaiinstitute/bosdyn_msgs/releases/download/aarch64-eloquent/ros-eloquent-bosdyn-msgs_0.0.0-0bionic_arm64.deb
+# ORIGINAL
+#RUN wget -q -O /tmp/ros-eloquent-bosdyn-msgs_0.0.0-0bionic_arm64.deb https://github.com/bdaiinstitute/bosdyn_msgs/releases/download/aarch64-eloquent/ros-eloquent-bosdyn-msgs_0.0.0-0bionic_arm64.deb
+#RUN dpkg -i /tmp/ros-eloquent-bosdyn-msgs_0.0.0-0bionic_arm64.deb
+#RUN rm /tmp/ros-eloquent-bosdyn-msgs_0.0.0-0bionic_arm64.deb
+
+### Build the spot_msgs for Humble - ARM64
+
+# Finish installation
+#RUN /bin/bash -c "source /opt/ros/humble/setup.bash \
+#&&	colcon build --symlink-install \
+#&&	source install/local_setup.bash"

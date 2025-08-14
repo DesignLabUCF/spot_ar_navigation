@@ -1,0 +1,39 @@
+services:
+  #ros2_bdai:
+  #  image: spot-ros-bdai-arm64
+  #ping_image:
+  #  image: ping-image-dockerization-arm64
+  #  ports:
+  #    - "21001:21001"
+  ping_test:
+    image: ping-test-dockerization-arm64
+    ports:
+      - "21002:21002"
+  #ping_write:
+  #  image: ping-write-dockerization-arm64
+  #  ports:
+  #    - "21003:21003"
+  #  volumes:
+  #    - /data:/data
+  #ping_webcam:
+  #  image: ping-webcam-dockerization-arm64
+  #  ports:
+  #    - "21004:21004"
+  #  volumes:
+  #    - /data:/data/webcam
+  #  devices:
+      # Hardcoded (will change everytime device is unplugged in re-plugged or Spot is rebooted)
+      #- /dev/bus/usb/001/006:/dev/bus/usb/001/006
+      # Hardcoded (will change everytime device is unplugged in re-plugged or Spot is rebooted)
+      #- /dev/video2:/dev/video2
+      # Functional and flexible. Map the container device file to SYMLINK specified by the udev file. This then points to the video driver outside of the container. 
+  #    - /dev/test-webcam1:/dev/test-webcam1
+  #ping_ff:
+  #  image: ping-ff-dockerization-arm64
+  #  ports:
+  #    - "21006:21006"
+  #spot_ros:
+  #  image: spot-ros-arm64
+  #ros2_discovery:
+  #  image: ros-discovery-arm64
+  #  network_mode: "host"

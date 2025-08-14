@@ -1,0 +1,17 @@
+services:
+  controls_wasd:
+    image: controls-wasd-arm64
+    platform: linux
+    network_mode: "host"
+    volumes:
+      - /data:/data
+    devices:
+      - /dev/bus:/dev/bus
+      - /dev/input:/dev/input
+      #- /dev/input/by-id/usb-413c_Dell_KB216_Wired_Keyboard-event-kbd:/dev/input/by-id/usb-413c_Dell_KB216_Wired_Keyboard-event-kbd
+      #- /dev/senseable-keyboard:/dev/senseable-keyboard
+    # Replacement for -t
+    tty: true
+    # Replacement for -i
+    stdin_open: true 
+    restart: unless-stopped

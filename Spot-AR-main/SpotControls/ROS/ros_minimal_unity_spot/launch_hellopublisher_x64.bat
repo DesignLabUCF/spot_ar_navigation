@@ -1,0 +1,1 @@
+docker run -it ros-minimal-unity-spot-x64 ros2 run unity_robotics_demo debug_hello_publisher

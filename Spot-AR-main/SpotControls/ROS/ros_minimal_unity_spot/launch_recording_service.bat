@@ -1,0 +1,1 @@
+docker run -it ros-minimal-unity-spot-x64 python3 src/unity_robotics_demo/unity_robotics_demo/spot_recording_helper.py 192.168.200.39

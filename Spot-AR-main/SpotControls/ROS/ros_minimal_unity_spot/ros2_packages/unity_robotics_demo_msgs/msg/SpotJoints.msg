@@ -1,0 +1,1 @@
+SpotJoint[12] joints

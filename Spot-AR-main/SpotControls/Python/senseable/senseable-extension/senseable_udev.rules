@@ -1,0 +1,7 @@
+### Test Webcam
+KERNEL=="video[0-9]*", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="082d", SYMLINK+="test-webcam1"
+#KERNEL=="video[0-9]*", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="082d", SYMLINK+="test-webcam1" 
+#ACTION=="add", KERNEL=="video[0-9]*", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="082d", SYMLINK+="test-webcam1"
+#ACTION=="change", KERNEL=="video[0-9]*", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="082d", SYMLINK="test-webcam1"
+### Failed Bluetooth Dongle Test
+SUBSYSTEM=="usb", ATTR{idProduct}=="2198", ATTR{idVendor}=="0a5c", SYMLINK+="test-bta"

@@ -1,0 +1,9 @@
+FROM ros-minimal-arm64
+
+ENV ROS_DOMAIN_ID=55
+
+# Source the ROS2 workspace and launch the ROS2 Spot wrapper driver
+CMD /bin/bash -c "cd /senseable_ws \
+&&  source /opt/ros/humble/setup.bash \
+&&  colcon build \
+&&  source install/setup.bash"

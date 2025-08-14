@@ -1,0 +1,2 @@
+:tar zcfv senseable-extension.spx docker-compose.yml icon.png manifest.json ping-image-dockerization-arm64.tgz ping-test-dockerization-arm64.tgz
+tar zcfv senseable-extension.spx docker-compose.yml icon.png manifest.json senseable_udev.rules *.tgz

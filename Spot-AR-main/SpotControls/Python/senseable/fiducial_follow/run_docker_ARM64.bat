@@ -1,0 +1,1 @@
+docker run -it -p 21006:21006 --platform linux/arm64 ping-ff-dockerization-arm64 

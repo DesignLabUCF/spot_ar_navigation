@@ -1,0 +1,1 @@
+tar zcfv senseable-service-extension.spx docker-compose.yml icon.png manifest.json *.tgz

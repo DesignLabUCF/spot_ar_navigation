@@ -1,0 +1,1 @@
+docker run -it -p 21002:21002 --platform linux/arm64 ping-test-dockerization-arm64 

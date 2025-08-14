@@ -1,0 +1,2 @@
+:: Build for ARM64 on Windows
+docker build -t ros-minimal-unity-spot-x64 --build-arg BOSDYN_CLIENT_USERNAME=%BOSDYN_CLIENT_USERNAME% --build-arg BOSDYN_CLIENT_PASSWORD=%BOSDYN_CLIENT_PASSWORD% -f Dockerfile .

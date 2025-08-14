@@ -1,0 +1,5 @@
+# TODO, Fix. All of this is junk
+# Bus 001 Device 009: ID 413c:2113 Dell Computer Corp.
+#BUS!="usb", ACTION!="add", SUBSYSTEM!=="usb_device", GOTO="keyboard_rules_end"
+#ATTRS{idVendor}=="413c", ATTRS{idProduct}=="2113", MODE="0666", GROUP="plugdev", SYMLINK+="senseable-keyboard"
+#LABEL="keyboard_rules_end"

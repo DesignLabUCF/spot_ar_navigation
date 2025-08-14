@@ -1,0 +1,15 @@
+<Calibration>
+<Formula>10</Formula>
+<Lens value = "12.5 mm">
+<Standard>
+<TAA>-1.52032769330012e-09</TAA>
+<TAB>-2.77412260909296e-08</TAB>
+<TAC>-1.82005664011068e-07</TAC>
+<TAD>-0.00165615458036868</TAD>
+<TAE>0.0177363680921777</TAE>
+<TAF>-219.704927824953</TAF>
+<calibration_range_min_in_celsius>20</calibration_range_min_in_celsius>
+<calibration_range_max_in_celsius>50</calibration_range_max_in_celsius>
+</Standard>
+</Lens>
+</Calibration>

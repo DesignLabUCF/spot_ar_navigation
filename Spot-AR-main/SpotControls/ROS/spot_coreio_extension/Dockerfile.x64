@@ -1,0 +1,68 @@
+## MODIFIED FROM: https://github.com/rshu-bd/spot_ros2/blob/rshu-bd/spot_core_extension/spot_coreio_extension/Dockerfile.arm64
+
+# Use a base image by OSRF that already contains ROS 2 Humble
+FROM ros:humble-ros-base-jammy
+
+# Setup environment variables
+ENV SPOT_WS /home/spot_ws
+
+## ADDED
+# Setup ENV for authentication
+ARG BOSDYN_CLIENT_USERNAME
+ARG BOSDYN_CLIENT_PASSWORD
+ARG SPOT_IP
+ENV BOSDYN_CLIENT_USERNAME $BOSDYN_CLIENT_USERNAME
+ENV BOSDYN_CLIENT_PASSWORD $BOSDYN_CLIENT_PASSWORD
+ENV SPOT_IP $SPOT_IP
+
+# Install system utilities
+RUN apt-get update && apt-get install -y \
+        software-properties-common \
+        wget \
+        iputils-ping \
+        iproute2 \
+        nano \
+        python3-pip \
+        && rm -rf /var/lib/apt/lists/*
+
+# Copy over the python requirements file 
+COPY docker-requirements.txt ./
+
+# Install the python requirements
+RUN python3 -m pip install pip==21.3.1 setuptools==59.6.0 wheel==0.37.1 && \
+    python3 -m pip install -r docker-requirements.txt --find-links .
+
+## ADDED (Missing on installation, unknown why)
+RUN python3 -m pip install Pillow
+RUN python3 -m pip install aiortc 
+
+# Install ROS dependecies
+RUN apt-get update && apt-get install -y \
+        ros-$ROS_DISTRO-joint-state-publisher-gui \
+        ros-$ROS_DISTRO-tf-transformations \ 
+        ros-$ROS_DISTRO-xacro \
+        ros-$ROS_DISTRO-depth-image-proc
+
+RUN apt-get update && apt-get install -y \
+         ros-$ROS_DISTRO-demo-nodes-cpp \
+         ros-$ROS_DISTRO-demo-nodes-py
+
+# Install Boston Dynamics AI Institute bosdyn_msgs package
+COPY ros-humble-bosdyn-msgs_3.2.0-0jammy_amd64.deb /tmp/ros-humble-bosdyn-msgs_3.2.0-0jammy_amd64.deb 
+RUN  dpkg -i /tmp/ros-humble-bosdyn-msgs_3.2.0-0jammy_amd64.deb \
+        && rm /tmp/ros-humble-bosdyn-msgs_3.2.0-0jammy_amd64.deb 
+
+# Setup the ROS workspace
+RUN mkdir -p ${SPOT_WS}/src 
+WORKDIR ${SPOT_WS}
+
+# Clone Spot ROS2 package and build source
+RUN git clone --recurse-submodules https://github.com/MASKOR/Spot-ROS2.git $SPOT_WS/src/
+RUN /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash; colcon build --symlink-install"
+
+# NOTE: Edit these parameters with your robot's credentials and application needs
+COPY spot_ros_params.yml /
+
+# Change entrypoint to source ~/.bashrc and start in ~
+COPY spot_ros_entrypoint.sh /
+ENTRYPOINT ["/spot_ros_entrypoint.sh"]

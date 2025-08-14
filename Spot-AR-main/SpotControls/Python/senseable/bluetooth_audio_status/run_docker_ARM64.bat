@@ -1,0 +1,1 @@
+docker run -it --privileged --net=host --platform linux/arm64 bluetooth-audio-status-arm64 /bin/bash
