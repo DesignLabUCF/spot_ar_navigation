@@ -57,7 +57,6 @@ Users navigate Spot by using a **ray cast** and **pinch gesture** to indicate th
 | ![Joystick Left](images/UI/HumanAndSpot.jpg) | ![Joystick Right](images/UI/Condition_XR2.jpg) |
 |:------------------------------------------:|:---------------------------------------------:|
 
-
 AR indicators are overlaid onto the physical environment by the HoloLens, providing real-time visual cues such as the **ray cast pointer** (white dash line) and the **directional target** (red circle). This augmentation allows users to see exactly where Spot will move and interact with the environment, enhancing spatial awareness and precision during navigation.
 
 
@@ -65,7 +64,6 @@ AR indicators are overlaid onto the physical environment by the HoloLens, provid
 
 | ![Joystick Left](images/UI/Point.png) | ![Joystick Right](images/UI/DirectionIndicator.png) |
 |:------------------------------------------:|:---------------------------------------------:|
-
 
 
 
@@ -88,6 +86,8 @@ The Spot tablet UI from Boston Dynamics provides a **touchscreen interface** for
 ![](images/UI/Tablet_Screenshot.jpg)
 
 The tablet also offers more [detailed controls](https://support.bostondynamics.com/s/article/Spot-App-Menus-and-General-Controls-49952), such as walk speed, operational modes, camera views, and additional options in the [Boston Dynamics app](https://support.bostondynamics.com/s/spot/downloads), but these features were not utilized in the study.
+
+![tablet training view](images/UI/tab1.jpg)
 
 
 ## HoloLens 2 Training
@@ -128,3 +128,14 @@ To launch the training, open: `SampleScene.unity` and start the scene. This proj
 | Navigation View                            | Target Blue Boxes                            |
 
 
+## Study Environment
+
+![](images/env/1.jpg)
+
+For the experiment, we custom-built a **wooden stage** to provide a private and controlled setting for participants. The apparatus included **two sets of staircases** and a **ramp**, allowing users to test features relevant to typical built environments. This setup leveraged Spot’s unique ability to **climb stairs and navigate elevated surfaces**, demonstrating how it can reach task objectives in real-world conditions that many other robots cannot.
+
+
+| ![Joystick Left](images/enviroment/2.jpg) | ![Joystick Right](images/enviroment/3.jpg) |
+|:------------------------------------------:|:---------------------------------------------:|
+                          |
+| ![Spot Navigation](images/enviroment/4.jpg) | ![Blue Boxes](images/enviroment/5.jpg) |                        |
