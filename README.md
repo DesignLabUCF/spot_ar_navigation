@@ -130,12 +130,13 @@ To launch the training, open: `SampleScene.unity` and start the scene. This proj
 
 ## Study Environment
 
-![](images/env/1.jpg)
+![ramp image](images/env/1.jpg)
 
 For the experiment, we custom-built a **wooden stage** to provide a private and controlled setting for participants. The apparatus included **two sets of staircases** and a **ramp**, allowing users to test features relevant to typical built environments. This setup leveraged Spot’s unique ability to **climb stairs and navigate elevated surfaces**, demonstrating how it can reach task objectives in real-world conditions that many other robots cannot.
 
 
-| ![Joystick Left](images/enviroment/2.jpg) | ![Joystick Right](images/enviroment/3.jpg) |
-|:------------------------------------------:|:---------------------------------------------:|
-                          |
-| ![Spot Navigation](images/enviroment/4.jpg) | ![Blue Boxes](images/enviroment/5.jpg) |                        |
+| ![ramp image](images/enviroment/2.jpg) | ![ramp image](images/enviroment/3.jpg) |
+|:----------------------------------------:|:-----------------------------------------:|
+| ![ramp image](images/enviroment/4.jpg) | ![ramp image](images/enviroment/5.jpg) |
+
+
