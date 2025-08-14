@@ -7,6 +7,12 @@ This repository is the official implementation of [**Evaluating the Effectivenes
 This study examines how Augmented Reality (AR) interfaces affect navigation control of the [**Boston Dynamics Spot**](https://bostondynamics.com/products/spot/) quadrupedal robot UCF [**TapeMeasure**](https://www.instagram.com/ucf.tapemeasure/). Testing with 33 non-experts and two experts showed that AR provided smoother robot movement and similar usability and trust compared to tablet controls, despite longer task times. The findings highlight AR’s potential to make advanced robotic systems more accessible and trusted by a wider range of users. This repository allows researchers to replicate the environment for our study and help aid their own studies that leverage quadrupedal robotic platforms.
 
 
+## Spot-AR-main
+
+The `Spot-AR-main` folder contains the **main Unity projects** used in this study and for general control of the Spot robot via the Microsoft HoloLens 2. These projects provide the interface with **ROS2**, the **Boston Dynamics SDK/API**, and include all the necessary code for conducting the experiments. The [**Spot-AR-main README**](Spot-AR-main/README.md) contains more detail documentation for this project.
+
+
+
 ## Spot Digital Twin
 
 In this mode, a virtual **Spot** model is augmented directly over the real *Spot* robot when the *HoloLens 2* is connected to Spot’s network Wi-Fi. This creates a synchronized **digital twin** that mirrors Spot’s movements in real time, allowing users to see both the physical robot and its digital counterpart aligned in the same space. The virtual twin provides enhanced situational awareness and helps visualize movement and orientation during operation.
@@ -130,7 +136,7 @@ To launch the training, open: `SampleScene.unity` and start the scene. This proj
 
 ## Study Environment
 
-![ramp image](images/env/1.jpg)
+![ramp image](images/enviroment/1.jpg)
 
 For the experiment, we custom-built a **wooden stage** to provide a private and controlled setting for participants. The apparatus included **two sets of staircases** and a **ramp**, allowing users to test features relevant to typical built environments. This setup leveraged Spot’s unique ability to **climb stairs and navigate elevated surfaces**, demonstrating how it can reach task objectives in real-world conditions that many other robots cannot.
 
