@@ -19,6 +19,13 @@ In this mode, a virtual **Spot** model is augmented directly over the real *Spot
 | ![Spot Navigation](images/DigitalTwin/2.jpg) | ![Blue Boxes](images/DigitalTwin/3.jpg) |
 | Motion View                            | Hover View                            |
 
+With the digital twin view, Spot’s motion path can be plotted in Unity as real-time movement data is streamed back to a control computer. As the physical robot moves, the virtual Spot’s joints animate in sync, replicating its exact posture and gait. An orange path traces the movement of the root node in space, providing a continuous visual history of the robot’s trajectory for analysis and review.
+
+
+| ![Joystick Left](images/Playback/1.PNG) | ![Joystick Right](images/Playback/2.PNG) |
+|:------------------------------------------:|:--------------------------------------------
+
+
 
 
 
