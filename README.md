@@ -7,6 +7,20 @@ This repository is the official implementation of [**Evaluating the Effectivenes
 This study examines how Augmented Reality (AR) interfaces affect navigation control of the [**Boston Dynamics Spot**](https://bostondynamics.com/products/spot/) quadrupedal robot UCF [**TapeMeasure**](https://www.instagram.com/ucf.tapemeasure/). Testing with 33 non-experts and two experts showed that AR provided smoother robot movement and similar usability and trust compared to tablet controls, despite longer task times. The findings highlight AR’s potential to make advanced robotic systems more accessible and trusted by a wider range of users. This repository allows researchers to replicate the environment for our study and help aid their own studies that leverage quadrupedal robotic platforms.
 
 
+## Spot Digital Twin
+
+In this mode, a virtual **Spot** model is augmented directly over the real *Spot* robot when the *HoloLens 2* is connected to Spot’s network Wi-Fi. This creates a synchronized **digital twin** that mirrors Spot’s movements in real time, allowing users to see both the physical robot and its digital counterpart aligned in the same space. The virtual twin provides enhanced situational awareness and helps visualize movement and orientation during operation.
+
+
+
+| ![Joystick Left](images/DigitalTwin/1.jpg) | ![Joystick Right](images/DigitalTwin/4.jpg) |
+|:------------------------------------------:|:---------------------------------------------:|
+| Digital/Physical Spot                             | Network UI                              |
+| ![Spot Navigation](images/DigitalTwin/2.jpg) | ![Blue Boxes](images/DigitalTwin/3.jpg) |
+| Motion View                            | Hover View                            |
+
+
+
 
 ## HoloLens 2 Training
 ![hololens training view](images/20240411_145648_HoloLens.jpg)
